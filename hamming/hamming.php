@@ -1,13 +1,14 @@
 <?php
 
-//
-// This is only a SKELETON file for the "Hamming" exercise. It's been provided as a
-// convenience to get you started writing code faster.
-//
-
 function distance($a, $b)
 {
-    //
-    // YOUR CODE GOES HERE
-    //
+	if (strlen($a) !== strlen($b))
+		throw new InvalidArgumentException('Inputs must be equal length');
+
+	$distance = 0;
+	foreach (str_split($a) as $index => $value)
+		if ($value !== $b[$index])
+			$distance++;
+
+	return $distance;
 }
