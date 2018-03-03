@@ -3,8 +3,9 @@
 function isIsogram($input)
 {
 	$input = strtolower($input);
-	// replace non-letter
-	preg_replace("[^a-z]", '', $input);
+
+	// remove whitespace, excepting diacritics
+	$input = preg_replace("/[^\wé]+/", '', $input);
 
 	$seen = "";
 	foreach (str_split($input) as $letter)
