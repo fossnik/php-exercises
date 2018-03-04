@@ -7,12 +7,7 @@ function isIsogram($input)
 	// remove whitespace, excepting diacritics
 	$input = preg_replace("/[^\wé]+/", '', $input);
 
-	$seen = "";
-	foreach (str_split($input) as $letter)
-		if (strpos($seen, $letter) !== false)
-			return False;
-		else
-			$seen = $seen . $letter;
+	$allUniqueChars = count_chars($input, 3);
 
-	return True;
+	return strlen($allUniqueChars) === strlen($input);
 }
