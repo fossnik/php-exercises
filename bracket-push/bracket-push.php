@@ -1,10 +1,19 @@
 <?php
 
 function brackets_match($input) {
-	$input = "([{}({}[])])";
+	if (strlen(preg_replace('/\[/', '', $input)) !== strlen(preg_replace('/\]/', '', $input)) ||
+			strlen(preg_replace('/\(/', '', $input)) !== strlen(preg_replace('/\)/', '', $input)) ||
+			strlen(preg_replace('/\{/', '', $input)) !== strlen(preg_replace('/\}/', '', $input)))
+		return false;
+
+	if (strlen($input) === 0)
+		return true;
+
 	$stack = [];
 
-	foreach (str_split($input) as $char) {
+	$justBrackets = preg_replace('/[^(){}[\]]/', '', $input);
+
+	foreach (str_split($justBrackets) as $char) {
 		if (preg_match('/[[({]/', $char))
 			array_push($stack, $char);
 		else if (count($stack) === 0)
