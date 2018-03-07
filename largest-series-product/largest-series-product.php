@@ -12,6 +12,9 @@ class Series {
 	}
 
 	public function largestProduct($width) {
+		if ($width === 0)
+			return 1;
+
 		$digits = $this->digits;
 		if ($width < 1 || $width > strlen($digits))
 			throw new InvalidArgumentException('Span cannot be Negative');
