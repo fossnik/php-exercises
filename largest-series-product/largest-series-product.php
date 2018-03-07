@@ -12,9 +12,16 @@ class Series {
 		$digits = $this->digits;
 		$high = 0;
 		for ($i = 0; $i < strlen($digits) - $width; $i++)
-			if ($digits[$i] * $digits[$i+1] * $digits[$i+2] > $high)
-				$high = $digits[$i] * $digits[$i+1] * $digits[$i+2];
+			if (product(substr($digits, $i, $width)) > $high)
+				$high = product(substr($digits, $i, $width));
 
 		return $high;
 	}
+
+	private function product($subDigits) {
+		$product = 1;
+		foreach ($subDigits as $value)
+			$product *= (int)$value;
+	}
+
 }
