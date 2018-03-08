@@ -1,20 +1,27 @@
 <?php
 
-//
-// This is only a SKELETON file for the "Run Length Encoding" exercise. It's been provided as a
-// convenience to get you started writing code faster.
-//
+function encode($input) {
+	if (strlen($input) === 0)
+		return '';
 
-function encode($input)
-{
-    //
-    // YOUR CODE GOES HERE
-    //
+	$output = '';
+	$first = '';
+	$count = 1;
+
+	foreach (str_split($input) as $next)
+		if ($first === $next)
+			$count++;
+		else {
+			$output .= $count > 1 ? $count . $first : $first;
+			$count = 1;
+			$first = $next;
+		}
+
+	$output .= $count > 1 ? $count . $first : $first;
+
+	return $output;
 }
 
-function decode($input)
-{
-    //
-    // YOUR CODE GOES HERE
-    //
+function decode($input) {
+
 }
