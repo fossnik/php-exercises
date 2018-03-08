@@ -23,5 +23,19 @@ function encode($input) {
 }
 
 function decode($input) {
+	$output = '';
+	$prefix = '';
 
+	foreach (str_split($input) as $c)
+		if (is_numeric($c))
+			$prefix .= $c;
+		else {
+			$runLength = $prefix === '' ? 1 : $prefix;
+			while ($runLength-- > 0)
+				$output .= $c;
+
+			$prefix = '';
+		}
+
+	return $output;
 }
