@@ -21,15 +21,22 @@ class Series {
 
 		$high = 0;
 		for ($i = 0; $i <= strlen($digits) - $width; $i++) {
-			$product = 1;
-			foreach (str_split(substr($digits, $i, $width)) as $value)
-				$product *= (int)$value;
-
+			$subSequence = substr($digits, $i, $width);
+			$product = Series::sequenceProduct($subSequence); 
 			if ($product > $high)
 				$high = $product;
 		}
 
 		return $high;
+	}
+	
+	private function sequenceProduct($subSequence) {
+		$product = 1;
+
+		foreach (str_split($subSequence) as $value)
+			$product *= (int)$value;
+		
+		return $product;
 	}
 
 }
